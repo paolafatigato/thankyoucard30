@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grazie ✨ da Paola</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne+Mono&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Caveat:wght@500;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --chartreuse:      #caff1d;
+      --razzmatazz:      #f02d74;
+      --violet-ray:      #9019ff;
+      --violet:          #f090fb;
+      --tangerine:       #ff8b47;
+      --apricot:         #ffd399;
+      --floral-white:    #fff9f1;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      background: var(--floral-white);
+      min-height: 100vh;
+      overflow-x: hidden;
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ctext y='20' font-size='20'%3E✨%3C/text%3E%3C/svg%3E"), auto;
+    }
+
+    /* ── BACKGROUND BLOBS ── */
+    .bg {
+      position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
+    }
+    .blob {
+      position: absolute; border-radius: 50%; filter: blur(80px); opacity: .25;
+      animation: drift 12s ease-in-out infinite alternate;
+    }
+    .blob1 { width:500px; height:500px; background:var(--violet-ray);  top:-100px; left:-100px; animation-delay:0s; }
+    .blob2 { width:400px; height:400px; background:var(--razzmatazz);  bottom:-80px; right:-80px; animation-delay:-4s; }
+    .blob3 { width:350px; height:350px; background:var(--chartreuse);  top:40%; left:55%; animation-delay:-7s; }
+    @keyframes drift {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(40px,30px) scale(1.08); }
+    }
+
+    /* ── FLOATING DECO ── */
+    .floaters { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+    .floater {
+      position: absolute; font-size: 1.6rem; opacity: .5;
+      animation: floatUp 10s ease-in-out infinite;
+    }
+    @keyframes floatUp {
+      0%,100% { transform: translateY(0) rotate(-5deg); }
+      50%      { transform: translateY(-18px) rotate(5deg); }
+    }
+
+    /* ── LAYOUT ── */
+    .page {
+      position: relative; z-index: 1;
+      max-width: 860px; margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      text-align: center;
+      margin-bottom: 2.8rem;
+    }
+    .stamp {
+      display: inline-block;
+      background: var(--razzmatazz);
+      color: #fff;
+      font-family: 'Syne Mono', monospace;
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: .35rem .9rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(240,45,116,.4); }
+      50%      { box-shadow: 0 0 0 10px rgba(240,45,116,0); }
+    }
+
+    h1 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(2.6rem, 7vw, 4.8rem);
+      font-weight: 800;
+      line-height: 1.05;
+      color: var(--violet-ray);
+      letter-spacing: -.02em;
+    }
+    h1 span.accent { color: var(--razzmatazz); }
+    h1 span.accent2 { color: var(--tangerine); }
+
+    .subtitle {
+      font-family: 'Caveat', cursive;
+      font-size: 1.5rem;
+      color: var(--tangerine);
+      margin-top: .5rem;
+    }
+
+    /* ── NAMES BAND ── */
+    .names-band {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem;
+      margin-bottom: 2.2rem;
+    }
+    .name-chip {
+      display: inline-block;
+      padding: .45rem 1.1rem;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: .95rem;
+      letter-spacing: .01em;
+      position: relative;
+      overflow: hidden;
+      transition: transform .18s, box-shadow .18s;
+      cursor: default;
+    }
+    .name-chip::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(255,255,255,.18);
+      opacity: 0;
+      transition: opacity .2s;
+    }
+    .name-chip:hover { transform: translateY(-3px) scale(1.04); }
+    .name-chip:hover::after { opacity: 1; }
+    .chip-1 { background:var(--violet-ray);   color:#fff; box-shadow:0 4px 18px rgba(144,25,255,.35); }
+    .chip-2 { background:var(--razzmatazz);   color:#fff; box-shadow:0 4px 18px rgba(240,45,116,.35); }
+    .chip-3 { background:var(--tangerine);    color:#fff; box-shadow:0 4px 18px rgba(255,139,71,.35); }
+    .chip-4 { background:var(--chartreuse);   color:#1a1a1a; box-shadow:0 4px 18px rgba(202,255,29,.5); }
+    .chip-5 { background:var(--violet);       color:#1a1a1a; box-shadow:0 4px 18px rgba(240,144,251,.5); }
+
+    /* ── INTRO TEXT ── */
+    .intro-box {
+      background: #fff;
+      border: 2.5px solid var(--violet-ray);
+      border-radius: 1.5rem;
+      padding: 1.4rem 1.8rem;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #2a1a3e;
+      line-height: 1.7;
+      margin-bottom: 2.6rem;
+      position: relative;
+    }
+    .intro-box .corner { position:absolute; font-size:1.6rem; }
+    .intro-box .corner.tl { top:-.8rem; left:.8rem; }
+    .intro-box .corner.tr { top:-.8rem; right:.8rem; }
+    .intro-box .corner.bl { bottom:-.8rem; left:.8rem; }
+    .intro-box .corner.br { bottom:-.8rem; right:.8rem; }
+    .intro-box strong { color: var(--razzmatazz); }
+
+    /* ── GRID INSTRUCTION ── */
+    .grid-label {
+      text-align: center;
+      font-family: 'Caveat', cursive;
+      font-size: 1.35rem;
+      color: var(--violet-ray);
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── CARDS GRID ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 1.1rem;
+      margin-bottom: 3rem;
+    }
+
+    /* 3D flip card */
+    .card-wrap {
+      perspective: 900px;
+      height: 210px;
+    }
+    .card {
+      width: 100%; height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform .55s cubic-bezier(.4,0,.2,1);
+      border-radius: 1.3rem;
+      cursor: pointer;
+    }
+    .card.flipped { transform: rotateY(180deg); }
+
+    .card-front, .card-back {
+      position: absolute; inset: 0;
+      backface-visibility: hidden;
+      border-radius: 1.3rem;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 1rem;
+      border: 2.5px solid transparent;
+    }
+
+    /* fronts */
+    .card-front {
+      background: #fff;
+      border-color: currentColor;
+      gap: .5rem;
+      transition: box-shadow .2s;
+    }
+    .card-wrap:hover .card-front { box-shadow: 0 8px 30px rgba(0,0,0,.12); }
+
+    .card-front .emoji-big { font-size: 3.2rem; line-height: 1; }
+    .card-front .label {
+      font-weight: 700; font-size: .9rem;
+      text-align: center; line-height: 1.3;
+      color: #2a1a3e;
+    }
+    .card-front .tap-hint {
+      font-size: .68rem;
+      color: #aaa;
+      font-family: 'Syne Mono', monospace;
+      margin-top: .3rem;
+    }
+
+    /* color accents per card */
+    .c0 .card-front { border-color: var(--violet-ray);   --cc: var(--violet-ray); }
+    .c1 .card-front { border-color: var(--razzmatazz);   --cc: var(--razzmatazz); }
+    .c2 .card-front { border-color: var(--tangerine);    --cc: var(--tangerine);  }
+    .c3 .card-front { border-color: var(--violet);       --cc: var(--violet);     }
+    .c4 .card-front { border-color: var(--chartreuse);   --cc: var(--chartreuse); }
+    .c5 .card-front { border-color: var(--razzmatazz);   --cc: var(--razzmatazz); }
+    .c6 .card-front { border-color: var(--violet-ray);   --cc: var(--violet-ray); }
+    .c7 .card-front { border-color: var(--tangerine);    --cc: var(--tangerine);  }
+
+    .c0 { --cc: var(--violet-ray); }
+    .c1 { --cc: var(--razzmatazz); }
+    .c2 { --cc: var(--tangerine);  }
+    .c3 { --cc: var(--violet);     }
+    .c4 { --cc: var(--chartreuse); }
+    .c5 { --cc: var(--razzmatazz); }
+    .c6 { --cc: var(--violet-ray); }
+    .c7 { --cc: var(--tangerine);  }
+
+    /* backs */
+    .card-back {
+      transform: rotateY(180deg);
+      gap: .55rem;
+      padding: 1.2rem;
+    }
+    .c0 .card-back { background: var(--violet-ray);  color: #fff; }
+    .c1 .card-back { background: var(--razzmatazz);  color: #fff; }
+    .c2 .card-back { background: var(--tangerine);   color: #fff; }
+    .c3 .card-back { background: var(--violet);      color: #2a1a3e; }
+    .c4 .card-back { background: var(--chartreuse);  color: #1a1a1a; }
+    .c5 .card-back { background: var(--razzmatazz);  color: #fff; }
+    .c6 .card-back { background: var(--violet-ray);  color: #fff; }
+    .c7 .card-back { background: var(--tangerine);   color: #fff; }
+
+    .card-back .emoji-sm { font-size: 2rem; }
+    .card-back .thanks-label {
+      font-family: 'Syne Mono', monospace;
+      font-size: .62rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      opacity: .75;
+    }
+    .card-back .will-do {
+      font-family: 'Caveat', cursive;
+      font-size: 1.22rem;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.3;
+    }
+    .card-back .tap-again {
+      font-size: .65rem;
+      opacity: .55;
+      font-family: 'Syne Mono', monospace;
+    }
+    .card-back .see-link {
+      display: inline-block;
+      margin-top: .3rem;
+      padding: .3rem .85rem;
+      border-radius: 100px;
+      background: rgba(255,255,255,.22);
+      border: 1.5px solid rgba(255,255,255,.55);
+      color: inherit;
+      font-family: 'Syne Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .08em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background .18s, transform .15s;
+      cursor: pointer;
+    }
+    .card-back .see-link:hover {
+      background: rgba(255,255,255,.38);
+      transform: scale(1.05);
+    }
+
+    /* ── SIGN OFF ── */
+    .signoff {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      background: var(--violet-ray);
+      border-radius: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .signoff::before {
+      content:'';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(202,255,29,.2), transparent 60%),
+                  radial-gradient(circle at 80% 30%, rgba(240,45,116,.25), transparent 50%);
+    }
+    .signoff .inner { position: relative; }
+    .signoff .heart-row { font-size: 1.4rem; margin-bottom: .8rem; }
+    .signoff p {
+      color: rgba(255,255,255,.85);
+      font-size: 1rem;
+      margin-bottom: .4rem;
+    }
+    .signoff .sig {
+      font-family: 'Caveat', cursive;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--chartreuse);
+      letter-spacing: .03em;
+      text-shadow: 2px 2px 0 rgba(0,0,0,.15);
+    }
+    .signoff .tagline {
+      font-family: 'Syne Mono', monospace;
+      font-size: .7rem;
+      letter-spacing: .1em;
+      color: rgba(255,255,255,.5);
+      text-transform: uppercase;
+      margin-top: .3rem;
+    }
+
+    /* ── CONFETTI ── */
+    .confetti-piece {
+      position: fixed;
+      width: 10px; height: 10px;
+      border-radius: 2px;
+      pointer-events: none;
+      z-index: 9999;
+      animation: confettiFall var(--dur) ease-out forwards;
+    }
+    @keyframes confettiFall {
+      0%   { transform: translate(0,0) rotate(0deg) scale(1); opacity:1; }
+      100% { transform: translate(var(--tx), 280px) rotate(var(--rot)) scale(.4); opacity:0; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 500px) {
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+      .card-wrap { height: 190px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background atmosphere -->
+  <div class="bg">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+  </div>
+
+  <div class="floaters" id="floaters"></div>
+
+  <div class="page">
+
+    <!-- ── HEADER ── -->
+    <header class="header">
+      <div class="stamp">✉️ thank you card</div>
+      <h1>
+        Grazie<br>
+        <span class="accent">dal</span>
+        <span class="accent2"> profondo</span><br>del cuore
+      </h1>
+      <p class="subtitle">ne farò buon uso! </p>
+    </header>
+
+    <!-- ── NAMES ── -->
+    <div class="names-band" id="namesRow"></div>
+
+    <!-- ── INTRO ── -->
+    <div class="intro-box">
+      <span class="corner tl">💜</span>
+      <span class="corner tr">🌟</span>
+      <span class="corner bl">✨</span>
+      <span class="corner br">🌈</span>
+      Grazie per l' <strong>abbonamento a Claude</strong> !
+      Lo sto usando già per trovare un modo per  <em>ringraziarvi</em>
+
+    </div>
+
+    <!-- ── GRID LABEL ── -->
+    <p class="grid-label">👆 clicca su ogni cartellina per scoprire cosa ne farò!</p>
+
+    <!-- ── CARDS ── -->
+    <div class="cards-grid" id="cardsGrid"></div>
+
+    <!-- ── SIGN OFF ── -->
+    <div class="signoff">
+      <div class="inner">
+        <div class="heart-row">💜💛🩷💚🧡</div>
+        <p>Grazie per aver creduto nei miei mille progetti, nelle mie idee,</p>
+        <p>e nel mio bisogno assolutamente legittimo di avere un AI come migliore amico.</p>
+        <div class="sig">Paola 🌬️</div>
+        <p class="tagline">paola al vento — sempre volando verso qualcosa di nuovo</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    /* ── DATA ── */
+    const names = [
+      { label: '✨ Giulia Esse', cls: 'chip-1' },
+      { label: '🌺 Giulia',      cls: 'chip-2' },
+      { label: '⛵ Lele',        cls: 'chip-3' },
+      { label: '🌱 Luciano',     cls: 'chip-4' },
+      { label: '🧗 Lorenzo',        cls: 'chip-5' },
+    ];
+
+    const cards = [
+      {
+        emoji: '🌐',
+        label: 'Creare siti web',
+        back: '…costruire versioni complesse e intricate di applicazioni già esistenti e perfettamente funzionanti✨',
+        link: 'https://paolafatigato.github.io/Sito-vendite/digital.html',
+        cls: 'c0'
+      },
+      {
+        emoji: '📚',
+        label: 'Programmare lezioni',
+        back: '…per le quali i miei alunni continueranno a chiedere "quando facciamo inglese normale?!" 😄',
+        link: 'https://paolafatigato.github.io/Personality-vocabulary-game/',
+        cls: 'c1'
+      },
+      {
+        emoji: '🎮',
+        label: 'Creare giochi',
+        back: '…progettare giochi dalle regole incomprensibili 🕹️',
+        link: 'https://paolafatigato.github.io/GooseGame/ ',
+        cls: 'c2'
+      },
+      {
+        emoji: '💑',
+        label: 'Psicoanalisi di coppia',
+        back: 'per dire a Lorenzo che ho sempre ragione io e mi deve dare sempre più attenzioni 🛋️',
+        cls: 'c3'
+      },
+      {
+        emoji: '🎓',
+        label: 'Preparare esami',
+        back: '…studiare Psicologia dello Sviluppo senza perdere completamente la sanità mentale 🧠',
+        cls: 'c4'
+      },
+      {
+        emoji: '🎨',
+        label: 'Shop',
+        back: '…avere l\'illusione di poter vendere delle magliette con i miei scarabocchi 🖼️',
+        link: 'https://www.redbubble.com/people/PaolalVento/shop?asc=u&ref=account-nav-dropdown',
+        cls: 'c5'
+      },
+      {
+        emoji: '✍️',
+        label: 'Scrivere e creare',
+        back: '…scrivere questi biglietti di ringraziamento, le lettere ai miei alunni e le tesi di laurea 💫',
+        cls: 'c6'
+      },
+      {
+        emoji: '🌈',
+        label: 'E tanto altro ancora…',
+        back: '…tutte le mie idee urgenti e folli. 🦄',
+        cls: 'c7'
+      },
+    ];
+
+    /* ── RENDER NAMES ── */
+    const namesRow = document.getElementById('namesRow');
+    names.forEach(n => {
+      const chip = document.createElement('div');
+      chip.className = 'name-chip ' + n.cls;
+      chip.textContent = n.label;
+      namesRow.appendChild(chip);
+    });
+
+    /* ── RENDER CARDS ── */
+    const grid = document.getElementById('cardsGrid');
+    cards.forEach((c, i) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'card-wrap ' + c.cls;
+
+      wrap.innerHTML = `
+        <div class="card" id="card${i}">
+          <div class="card-front">
+            <div class="emoji-big">${c.emoji}</div>
+            <div class="label">${c.label}</div>
+            <div class="tap-hint">clicca per scoprire →</div>
+          </div>
+          <div class="card-back">
+            <div class="emoji-sm">${c.emoji}</div>
+            <div class="thanks-label">Grazie a voi potrò…</div>
+            <div class="will-do">${c.back}</div>
+            ${c.link ? `<a class="see-link" href="${c.link}" target="_blank" rel="noopener noreferrer">👀 vedi esempio</a>` : ''}
+            <div class="tap-again">← ritorna</div>
+          </div>
+        </div>`;
+
+      wrap.addEventListener('click', (e) => {
+        if (e.target.closest('.see-link')) return;
+        const card = wrap.querySelector('.card');
+        card.classList.toggle('flipped');
+        if (card.classList.contains('flipped')) spawnConfetti(wrap);
+      });
+
+      grid.appendChild(wrap);
+    });
+
+    /* ── FLOATING DECO ── */
+    const floatersEl = document.getElementById('floaters');
+    const decos = ['🌸','✨','💫','🌟','💜','🌈','🍋','🦋','🌬️','💛','🩷','🌺','⚡','🎨'];
+    decos.forEach((d, i) => {
+      const el = document.createElement('div');
+      el.className = 'floater';
+      el.textContent = d;
+      el.style.cssText = `
+        top: ${Math.random()*90}%;
+        left: ${Math.random()*95}%;
+        animation-delay: ${(i * 0.6).toFixed(1)}s;
+        animation-duration: ${8 + Math.random()*6}s;
+        font-size: ${1.2 + Math.random()*1.4}rem;
+        opacity: ${0.2 + Math.random()*0.3};
+      `;
+      floatersEl.appendChild(el);
+    });
+
+    /* ── CONFETTI ── */
+    const confettiColors = [
+      'var(--chartreuse)','var(--razzmatazz)','var(--violet-ray)',
+      'var(--violet)','var(--tangerine)','var(--apricot)','#fff'
+    ];
+    function spawnConfetti(origin) {
+      const rect = origin.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      for (let k = 0; k < 22; k++) {
+        const el = document.createElement('div');
+        el.className = 'confetti-piece';
+        const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+        const tx = (Math.random() - .5) * 220 + 'px';
+        const rot = Math.random() * 720 + 'deg';
+        const dur = (.6 + Math.random() * .8) + 's';
+        const size = 6 + Math.random() * 8;
+        el.style.cssText = `
+          left:${cx - size/2}px; top:${cy - size/2}px;
+          width:${size}px; height:${size}px;
+          background:${color};
+          --tx:${tx}; --rot:${rot}; --dur:${dur};
+          border-radius:${Math.random()>.5? '50%':'2px'};
+        `;
+        document.body.appendChild(el);
+        el.addEventListener('animationend', () => el.remove());
+      }
+    }
+  </script>
+</body>
+</html>
