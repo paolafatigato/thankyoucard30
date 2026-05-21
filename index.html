@@ -352,6 +352,64 @@
       .cards-grid { grid-template-columns: repeat(2, 1fr); }
       .card-wrap { height: 190px; }
     }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(26,5,50,.75);
+      backdrop-filter: blur(7px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden;
+      transition: opacity .3s, visibility .3s;
+      padding: 1rem;
+    }
+    .modal-overlay.open {
+      opacity: 1; visibility: visible;
+    }
+    .modal-card {
+      background: var(--floral-white);
+      border-radius: 2rem;
+      padding: 2.2rem 1.8rem 1.8rem;
+      max-width: 400px; width: 100%;
+      text-align: center;
+      position: relative;
+      transform: translateY(40px) scale(.93);
+      transition: transform .38s cubic-bezier(.34,1.56,.64,1);
+      border: 3px solid var(--violet-ray);
+      box-shadow: 0 20px 60px rgba(144,25,255,.3);
+    }
+    .modal-overlay.open .modal-card {
+      transform: translateY(0) scale(1);
+    }
+    .modal-photo {
+      width: 100%;
+      max-height: 270px;
+      object-fit: cover;
+      border-radius: 1.3rem;
+      margin-bottom: 1.3rem;
+      border: 3px solid var(--violet);
+      display: block;
+    }
+    .modal-message {
+      font-family: 'Caveat', cursive;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--razzmatazz);
+      line-height: 1.35;
+      margin-bottom: .5rem;
+    }
+    .modal-close {
+      position: absolute; top: .85rem; right: .9rem;
+      background: var(--razzmatazz); color: #fff;
+      border: none; border-radius: 50%;
+      width: 2.1rem; height: 2.1rem;
+      font-size: 1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform .15s, background .15s;
+      line-height: 1;
+    }
+    .modal-close:hover { transform: scale(1.15); background: var(--violet-ray); }
+    .name-chip.clickable { cursor: pointer; }
   </style>
 </head>
 <body>
@@ -401,24 +459,33 @@
     <!-- ── SIGN OFF ── -->
     <div class="signoff">
       <div class="inner">
-        <div class="heart-row">💜💛🩷💚🧡</div>
-        <p>Grazie per aver creduto nei miei mille progetti, nelle mie idee,</p>
-        <p>e nel mio bisogno assolutamente legittimo di avere un AI come migliore amico.</p>
-        <div class="sig">Paola 🌬️</div>
-        <p class="tagline">paola al vento — sempre volando verso qualcosa di nuovo</p>
+        <div class="heart-row">💜💙💚💛🧡🩷</div>
+        <p>Visto che siamo lontani</p>
+        <p>ora avrò un AI come migliore amico.</p>
+        <div class="sig">Paola 🐋</div>
+        <p class="tagline">PS: sarete sempre i miei preferiti</p>
       </div>
     </div>
 
   </div>
 
+  <!-- ── MODAL ── -->
+  <div class="modal-overlay" id="photoModal" role="dialog" aria-modal="true" aria-label="Messaggio personale">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose" aria-label="Chiudi">✕</button>
+      <img class="modal-photo" id="modalPhoto" src="" alt="Foto insieme">
+      <div class="modal-message" id="modalMessage"></div>
+    </div>
+  </div>
+
   <script>
     /* ── DATA ── */
     const names = [
-      { label: '✨ Giulia Esse', cls: 'chip-1' },
-      { label: '🌺 Giulia',      cls: 'chip-2' },
-      { label: '⛵ Lele',        cls: 'chip-3' },
-      { label: '🌱 Luciano',     cls: 'chip-4' },
-      { label: '🧗 Lorenzo',        cls: 'chip-5' },
+      { label: '✨ Giulia Esse', cls: 'chip-1', photo: 'Giulias.jpg', message: 'bastarda, vienimi a leggere una storia 🖤' },
+      { label: '🌺 Giulia',      cls: 'chip-2', photo: 'Giulia.jpg',  message: 'non dovevi, stupida! Sono debitrice 💜' },
+      { label: '⛵ Lele',        cls: 'chip-3', photo: 'Lele.jpg',    message: 'vieni a scalare in Daone, approfitta della disoccupazione! 🧗' },
+      { label: '🌱 Luciano',     cls: 'chip-4', photo: 'Luciano.jpg', message: 'ti creo un sito web per i tuoi business? 🌐' },
+      { label: '🧗 Lorenzo',     cls: 'chip-5' },
     ];
 
     const cards = [
@@ -476,12 +543,38 @@
       },
     ];
 
+    /* ── MODAL ── */
+    const modal       = document.getElementById('photoModal');
+    const modalPhoto  = document.getElementById('modalPhoto');
+    const modalMsg    = document.getElementById('modalMessage');
+    const modalClose  = document.getElementById('modalClose');
+
+    function openModal(photo, message) {
+      modalPhoto.src     = photo;
+      modalMsg.textContent = message;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
     /* ── RENDER NAMES ── */
     const namesRow = document.getElementById('namesRow');
     names.forEach(n => {
       const chip = document.createElement('div');
-      chip.className = 'name-chip ' + n.cls;
+      chip.className = 'name-chip ' + n.cls + (n.photo ? ' clickable' : '');
       chip.textContent = n.label;
+      if (n.photo) {
+        chip.setAttribute('role', 'button');
+        chip.setAttribute('tabindex', '0');
+        chip.addEventListener('click', () => openModal(n.photo, n.message));
+        chip.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openModal(n.photo, n.message); });
+      }
       namesRow.appendChild(chip);
     });
 
