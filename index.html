@@ -395,12 +395,14 @@
     }
     .modal-photo {
       width: 100%;
-      max-height: 270px;
-      object-fit: cover;
+      max-height: 60vh;
+      object-fit: contain;
+      object-position: center;
       border-radius: 1.3rem;
       margin-bottom: 1.3rem;
       border: 3px solid var(--violet);
       display: block;
+      background: var(--floral-white);
     }
     .modal-message {
       font-family: 'Caveat', cursive;
@@ -495,9 +497,9 @@
     /* ── DATA ── */
     const names = [
       { label: '✨ Giulia Esse', cls: 'chip-1', photo: 'Giulias.jpg', message: 'bastarda, vienimi a leggere una storia 🖤' },
-      { label: '🌺 Giulia',      cls: 'chip-2', photo: 'Giulia.jpeg',  message: 'non dovevi, stupida! Sono debitrice 💜' },
+      { label: '🌺 Giulia',      cls: 'chip-2', photo: 'giulia.jpeg',  message: 'non dovevi, stupida! Mi salvi sempre la vita🩵' },
       { label: '⛵ Lele',        cls: 'chip-3', photo: 'Lele.jpg',    message: 'vieni a scalare in Daone, approfitta della disoccupazione! 🧗' },
-      { label: '🌱 Luciano',     cls: 'chip-4', photo: 'Luciano.jpg', message: 'ti creo un sito web per i tuoi business? 🌐' },
+      { label: '🌱 Luciano',     cls: 'chip-4', photo: 'Luciano.jpg', message: 'ti creo un sito web per i tuoi business? 🕴️' },
       { label: '🧗 Lorenzo',     cls: 'chip-5' },
     ];
 
