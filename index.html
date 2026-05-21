@@ -6,6 +6,9 @@
   <title>Grazie ✨ da Paola</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Syne+Mono&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Caveat:wght@500;700&display=swap" rel="stylesheet"/>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="logo.png" />
+  <meta name="theme-color" content="#9019ff" />
 
   <style>
     :root {
@@ -79,6 +82,15 @@
       border-radius: 100px;
       margin-bottom: 1rem;
       animation: pulse 2.5s ease-in-out infinite;
+    }
+    .site-logo {
+      display: block;
+      width: 72px;
+      height: auto;
+      margin: 0 auto .6rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.12);
+      border: 3px solid rgba(144,25,255,.08);
     }
     @keyframes pulse {
       0%,100% { box-shadow: 0 0 0 0 rgba(240,45,116,.4); }
@@ -427,6 +439,7 @@
 
     <!-- ── HEADER ── -->
     <header class="header">
+     
       <div class="stamp">✉️ thank you card</div>
       <h1>
         Grazie<br>
@@ -482,7 +495,7 @@
     /* ── DATA ── */
     const names = [
       { label: '✨ Giulia Esse', cls: 'chip-1', photo: 'Giulias.jpg', message: 'bastarda, vienimi a leggere una storia 🖤' },
-      { label: '🌺 Giulia',      cls: 'chip-2', photo: 'Giulia.jpg',  message: 'non dovevi, stupida! Sono debitrice 💜' },
+      { label: '🌺 Giulia',      cls: 'chip-2', photo: 'Giulia.jpeg',  message: 'non dovevi, stupida! Sono debitrice 💜' },
       { label: '⛵ Lele',        cls: 'chip-3', photo: 'Lele.jpg',    message: 'vieni a scalare in Daone, approfitta della disoccupazione! 🧗' },
       { label: '🌱 Luciano',     cls: 'chip-4', photo: 'Luciano.jpg', message: 'ti creo un sito web per i tuoi business? 🌐' },
       { label: '🧗 Lorenzo',     cls: 'chip-5' },
